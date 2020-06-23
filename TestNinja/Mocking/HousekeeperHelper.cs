@@ -6,13 +6,18 @@ using System.Text;
 
 namespace TestNinja.Mocking
 {
-    public static class HousekeeperHelper
+    public class HousekeeperHelper
     {
-        private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
-
-        public static bool SendStatementEmails(DateTime statementDate)
+        private readonly IUnitOfWork _unitOfWork;
+        
+        public HousekeeperHelper(IUnitOfWork unitOfWork)
         {
-            var housekeepers = UnitOfWork.Query<Housekeeper>();
+            _unitOfWork = unitOfWork;
+        }
+
+        public bool SendStatementEmails(DateTime statementDate)
+        {
+            var housekeepers = _uni.Query<Housekeeper>();
 
             foreach (var housekeeper in housekeepers)
             {
@@ -38,11 +43,10 @@ namespace TestNinja.Mocking
                         MessageBoxButtons.OK);
                 }
             }
-
             return true;
         }
 
-        private static string SaveStatement(int housekeeperOid, string housekeeperName, DateTime statementDate)
+        public static string SaveStatement(int housekeeperOid, string housekeeperName, DateTime statementDate)
         {
             var report = new HousekeeperStatementReport(housekeeperOid, statementDate);
 
