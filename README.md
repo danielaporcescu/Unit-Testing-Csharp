@@ -1,3 +1,3 @@
-# Unit-Testing-Csharp
+# Unit Testing C#
 
-Small exercises and best practices of Automation testing in C#. Unit tests, Integration tests, Using Moq and NUnit.
+Implementations, exercises and best practices of Automation testing in C#. Unit tests, Integration tests, Using Moq and NUnit.
